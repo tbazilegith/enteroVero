@@ -1,0 +1,17 @@
+
+# Absolute path
+input     : "/.../PATH/fastqs" # provide path to reads fastq files 
+output    : "/.../PATH/output" # provide output directory path
+#<<asbler>> an optional parameter for choosing an assembly software to use (skesa or megahit, megahit default)
+db        : "/.../PATH/share/kraken_databases/viral_dba" # path to kraken viral datadase
+ev_ref_genomes: "/.../PATH/share/evvp1_seqs/vp1_nucl01" # evNrv VP1 genes downloaded (building phylogenetic trees)
+
+blastnevdb : "/.../PATH/share/evvp1_db/blastbd01/ev_vp1Gene_db"
+blastpevdb : "/.../PATH/share/evvp1_db/blastbd01/ev_vp1Prot_db"
+ev_ndbname : "EVvp1_genes" # name of the database
+ev_pdbname : "EVvp1_proteins" # name of the database
+
+vp1_metdt : "/.../PATH/EV_RV_vp1GenProt_v2ed.xlsx" # absolute path to metadata table  
+mao4aln : "/.../PATH/clustal_align_nucleotide2.mao" # absolute path to  mega analysis option file to compute alignment using mega
+mao4tree : "/.../PATH/infer_ML_nucleotide.mao" # absolute path to mega analysis option file to build mega tree
+vp1db : "/.../PATH/share/evvp1_db/HEV_customedDB2/" # Path to Kraken EV vp1 database
