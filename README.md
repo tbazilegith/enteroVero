@@ -1,5 +1,5 @@
 # EnteroVero
-A web-deployed pipeline to seek genotyping for Enterovirus.
+A web-deployed pipeline to seek genotyping for Enterovirus (formerly GentySpuds).
 
 ### <span style="color: red;">Disclaimer:</span> results of pipeline are intended for research use only and obtained by procedures that were not CLIA validated.
 ## An enterovirus is a small and enveloped mRNA virus that can causes infections in people of all ages.
@@ -34,7 +34,7 @@ gitGraph
        commit id:"Read Alignment" tag:"BWA"
        commit id:"Sorting and Indexing" tag:"Samtools"
        commit id:"Consensus Assembly" tag:"Pilon"
-       checkout Gentyspuds_wf
+       checkout enterovero_wf
        merge Assembly
        branch phylogeny
        checkout phylogeny
