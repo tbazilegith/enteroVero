@@ -16,15 +16,11 @@ process iqtree{
     //path ("*")
     //E180-R2_S22/pilon_cons/E180-R2_S22_pilon.fasta
     //phylogenetic tree bwt given sample and public strains of EV
-    // -m MFP modelFinder Plus (is the default behavior 1.5.4X)
-    //ascertainment bias correction (+ASC) applied if the alignment does not contain constant sites(for SNP data)
-    //alrt approximate likelihood ratio test to assess supports single branch test
-    //-T AUTO to determine the best number of cores
     script:
     """     
     # building tree from alignment
     mkdir -p ${params.output}/${samp}/iqtree_out/
-    iqtree -s ${params.output}/${samp}/clustalo_out/${samp}_evpub.fasta -pre ${params.output}/${samp}/iqtree_out/${samp}_evpub -af fasta -nt AUTO -ntmax ${task.cpus} -m GTR+G+I -bb 1000 -alrt 1000 
+    iqtree -s ${params.output}/${samp}/clustalo_out/${samp}_evpub.fasta -pre ${params.output}/${samp}/iqtree_out/${samp}_evpub -af fasta -nt ${task.cpus}
         
     """
 }

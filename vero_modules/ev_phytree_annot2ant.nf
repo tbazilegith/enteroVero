@@ -19,19 +19,19 @@ process treeAnnotProc {
     
     #!/usr/bin/env Rscript
     #install.packages('TreeTools', repos='http://cran.us.r-project.org')
-    suppressMessages(library("ape"))
+    library("ape")
     #library("phangorn") # linked treetool
     #library(phytools)
     #library("TreeTools") # to get tip label ,linked to phangorn
     #library(diversitree)
     #library(geiger)
-    suppressMessages(library(ggtree))
-    suppressMessages(library("ggplot2"))
+    library(ggtree)
+    library("ggplot2")
     #library(writexl)
-    suppressMessages(library(readxl))
-    suppressMessages(library(RColorBrewer))
-    suppressMessages(library(ggnewscale))
-    suppressMessages(library(tidyverse))
+    library(readxl)
+    library(RColorBrewer)
+    library(ggnewscale)
+    library(tidyverse)
 
     #items = "${mypath}".strip().split("/")
     
@@ -41,8 +41,7 @@ process treeAnnotProc {
     tree01 <- read.tree(iq_tree)
 
     # Getting tree tip labels *****
-    # vp1_accession <- tree01[4] #TipLabels
-    vp1_accession <- tree01[5] #TipLabels(tree01) when boostrap numbers on branches
+    vp1_accession <- tree01[4] #TipLabels(tree01)
     # Ordering
     vp1_accession2 <- vp1_accession[[1]] # as vector of characters , sort(as.vector(vp1_accession))
     
@@ -51,7 +50,7 @@ process treeAnnotProc {
     df_treetip <- as.data.frame(vp1_accession2)
     
     # Extracting, filter sample Name/contigs from vp1_accession vector or treetip labels
-    df_ext <- df_treetip %>% filter(str_detect(vp1_accession2, '_pilon'))
+    df_ext <- df_treetip %>% filter(str_detect(vp1_accession2, 'Contig_'))
   
     #safe df as a csv file
     #write.csv(df_ext,"${params.output}/${mypath}/EV_vp1metadata.csv", row.names = FALSE)
@@ -97,7 +96,7 @@ process treeAnnotProc {
     # Changing tree tips based on df Species_Type column to see clade of sample types
     tree02 <- tree01
     #treetl <- TipLabels(tree02)
-    tree02[5][[1]] <- df_treeNdata2[[3]][match(tree02[5][[1]], df_treeNdata2[[1]])] # colunm 3(new tree tips) and colum 1 (original tree tips)
+    tree02[4][[1]] <- df_treeNdata2[[3]][match(tree02[4][[1]], df_treeNdata2[[1]])] # colunm 3(new tree tips) and colum 1 (original tree tips)
 
     # Annotated tree
     ggtree(tree02) %<+% df_treeNdata2 + geom_tiplab(align=TRUE, linesize=.3, size=1.7) + theme_tree2() + xlim(NA, 12) + ggtitle("Sample ${mypath} and VP1 trains of EV and RV")

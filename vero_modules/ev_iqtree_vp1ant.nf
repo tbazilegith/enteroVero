@@ -27,7 +27,7 @@ process iqtree_vp1{
     """     
     # building tree from alignment
     mkdir -p iqtree_out
-    iqtree -s ${vp1_aln} -pre iqtree_out/vp1 -af fasta -nt AUTO -ntmax ${task.cpus} -m GTR+G+I -bb 1000 -alrt 1000
+    iqtree -s ${vp1_aln} -pre iqtree_out/vp1 -af fasta -nt ${task.cpus}
        
     """
 }
@@ -36,4 +36,3 @@ process iqtree_vp1{
 // Size per contig (moodule loadseqkit)
 // seqkit fx2tab --length --name --header-line file.fasta
 //${params.output}/clustalo_out/${vp1_aln}.fasta
-// -nt ${task.cpus}
